@@ -2,10 +2,16 @@
 
 const int Fixed::fractional_bits = 8;
 
-Fixed::Fixed(const int)
+Fixed::Fixed(const int num)
 {
-    
+    num << fractional_bits;
+    setRawBits(num);
 }
+Fixed::Fixed(const float num)
+{
+    setRawBits(roundf(num * (1 << fractional_bits)));
+}
+
 Fixed::Fixed(void)
 {
     setRawBits(0);
@@ -17,6 +23,7 @@ Fixed::Fixed(const Fixed &fix)
     std::cout << "Copy constructor called" << std::endl;
     *this = fix;
 }
+
 Fixed &Fixed::operator=(const Fixed &fix)
 {
     if (this == &fix)
