@@ -38,3 +38,10 @@
 //     std::cout << c<<"\n";
 
 // }
+
+int main()
+{
+    int i = 0;
+    int j = i++;
+    
+}
