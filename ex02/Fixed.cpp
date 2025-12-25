@@ -4,12 +4,12 @@ const int Fixed::fractional_bits = 8;
 
 Fixed::Fixed(const int num)
 {
-    setRawBits(num * (1 << fractional_bits));
+    setRawBits(num << fractional_bits);
 }
 
 Fixed::Fixed(const float num)
 {
-    setRawBits(roundf(num * (1 << fractional_bits)));
+    setRawBits(roundf(num * (1 << fractional_bits)));  // why three way equation
 }
 
 float Fixed::toFloat( void ) const
@@ -20,7 +20,7 @@ float Fixed::toFloat( void ) const
 
 int Fixed::toInt( void ) const
 {
-    int value = getRawBits() / (1 << fractional_bits);
+    int value = getRawBits() / (1 << fractional_bits); // why
     return value;
 }
 
@@ -48,32 +48,32 @@ std::ostream &operator<<(std::ostream &out, const Fixed& obj)
 
 bool Fixed::operator>(const Fixed& obj) const
 {
-    return (raw_value > obj.raw_value);
+    return (this->raw_value > obj.raw_value);
 }
 
 bool Fixed::operator>=(const Fixed& obj) const
 {
-    return (raw_value >= obj.raw_value);
+    return (this->raw_value >= obj.raw_value);
 }
 
 bool Fixed::operator<(const Fixed& obj) const
 {
-    return (raw_value < obj.raw_value);
+    return (this->raw_value < obj.raw_value);
 }
 
 bool Fixed::operator<=(const Fixed& obj) const
 {
-    return (raw_value <= obj.raw_value);
+    return (this->raw_value <= obj.raw_value);
 }
 
 bool Fixed::operator==(const Fixed& obj) const
 {
-    return (raw_value == obj.raw_value);
+    return (this->raw_value == obj.raw_value);
 }
 
 bool Fixed::operator!=(const Fixed& obj) const
 {
-    return (raw_value != obj.raw_value);
+    return (this->raw_value != obj.raw_value);
 }
 
 Fixed Fixed::operator+(const Fixed& obj)
@@ -104,27 +104,27 @@ Fixed Fixed::operator/(const Fixed& obj)
 
 Fixed &Fixed::operator++()
 {
-    ++raw_value; 
+    ++this->raw_value; 
     return *this;
 }
 
 Fixed Fixed::operator++(int)
 {
     Fixed b;
-    b.raw_value = raw_value++;
+    b.raw_value = this->raw_value++;
     return b;
 }
 
 Fixed &Fixed::operator--()
 {
-    --raw_value;
+    --this->raw_value;
     return *this;
 }
 
 Fixed Fixed::operator--(int)
 {
     Fixed b;
-    b.raw_value = raw_value--;
+    b.raw_value = this->raw_value--;
     return b;
 }
 
@@ -166,4 +166,4 @@ void Fixed::setRawBits( int const raw )
     raw_value = raw;
 }
 
-Fixed::~Fixed(void) {}
+Fixed::~Fixed(void) {std::cout << *this << " destroyed" << std::endl;}

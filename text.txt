@@ -1,1 +1,31 @@
-bit set
+bit set :23
+
+{
+k: 0x7fffea7e94bc
+j: 0x7fffea7e9508
+yoyo
+0x7fffea7e94f8
+0x7fffea7e94f8
+3 destroyed
+}
+
+    b = Fixed( 5.05f );
+
+
+    Fixed const b( Fixed( -0.5f )); kaytjahel
+
+fraction bits , and dicimal bits
+
+{
+
+    int Fixed::toInt( void ) const
+{
+    std::cerr << std::bitset<32>(getRawBits()) << std::endl;
+    int value = getRawBits() / (1 << fractional_bits); // why
+    return value;
+}
+ depends <- 111111111111111111111111 10000000 -> dima zero
+}
+
+
+messagat
